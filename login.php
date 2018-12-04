@@ -1,7 +1,7 @@
 <html>
 <head>
-    <title>Desain Form Login Dengan Css</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Log In</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <div class="konten">
@@ -23,6 +23,8 @@
                     <label for="remember">Remember Me</label>
                 <div class="grup">
                     <input type="submit" value="Log In">
+                    <br>
+                    <p class="message">Not registered? <a href="registrasi.php">Create an account</a></p>
                 </div>
             </form>
         </div>
