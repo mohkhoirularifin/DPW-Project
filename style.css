@@ -9,7 +9,7 @@ body{
     background: pink;
 }
  
-div.konten{
+.konten{
     background: #ffffff;
     width: 350px;
     margin: 222px auto 0;
@@ -18,20 +18,20 @@ div.konten{
     overflow: hidden;
 }
  
-div.kepala{
+.kepala{
     background: black;
     padding: 10px 22px;
     height: 60px;
 }
  
-div.kepala h2.judul{
+.kepala h2.judul{
     color: #fff;
     font-weight: normal;
     line-height: 40px;
     display: inline-block;
 }
  
-div.lock{
+.lock{
     background-image: url("lock.png");
     background-position: center;
     background-size: 38px;
@@ -42,27 +42,27 @@ div.lock{
     margin-right: 10px;
 }
  
-div.artikel{
+.artikel{
     padding:10px 22px 0;
     color: #808080;
 }
  
-div.artikel div.grup{
+.artikel div.grup{
     margin: 16px 0;
 }
  
-div.artikel div.grup label,
-div.artikel div.grup input{
+.artikel div.grup label,
+.artikel div.grup input{
     display: block;
 }
  
-div.artikel div.grup label{
+.artikel div.grup label{
     font-size: 13px;
     margin-bottom: 10px;
 }
  
-div.artikel div.grup input[type="text"],
-div.artikel div.grup input[type="password"]{
+.artikel div.grup input[type="text"],
+.artikel div.grup input[type="password"]{
     width: 100%;
     height: 30px;
     padding: 0 10px;
@@ -71,7 +71,7 @@ div.artikel div.grup input[type="password"]{
     color: black;
 }
  
-div.artikel div.grup input[type="submit"]{
+.artikel div.grup input[type="submit"]{
     background: black;
     padding: 4px 16px;
     margin: 0 auto;
@@ -81,6 +81,35 @@ div.artikel div.grup input[type="submit"]{
     cursor: pointer;
 }
  
-div.artikel div.grup input[type="submit"]:hover{
+.artikel div.grup input[type="submit"]:hover{
     background: pink;
 }
+
+.wrapper {
+    width: 98%;
+    margin: 0 auto;
+}
+
+.sidebar {
+    width: 20%;
+    margin-right: 2%;
+}
+
+.content {
+    width: 78%;
+}
+
+.sidebar, .content {
+    background: pink;
+    height: 100%;
+    float: left;
+    border-radius: 4px;
+    color: black;
+    font-family: Helvetica;
+    text-align: center;
+  }
+  
+  h1 {
+    padding: 100px 0;
+    font-size: 1em;
+  }
