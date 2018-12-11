@@ -43,7 +43,44 @@
         <div id="content">
             <h1>Daftar Pasien Klinik Sehat Ceria</h1> 
         </div>
-            
+        <a href="tambah_data.php">Tambah Data Pasien</a>
+    <form action="" method="post">
+    </form>
+    <br>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>No. </th>
+                <th>Nama </th>
+                <th>Nomor Pasien </th>
+                <th>Alamat </th>
+                <th>Ruang </th>
+                <th>Derita </th>
+                <th>Foto </th>
+                <th>Aksi </th>
+            </tr>
+            <?php $i=1 ?>
+            <?php foreach ($mahasiswa as $row):?>
+        </thead>
+        <tbody>
+            <tr>
+                <td><?= $i; ?></td>
+                <td><?= $row["Nama"]; ?></td>
+                <td><?= $row["Nomor Pasien"]; ?></td>
+                <td><?= $row["Alamat"]; ?></td>
+                <td><?= $row["Ruang"]; ?></td>
+                <td><?= $row["Derita"]; ?></td>
+                <td> <img src="image/<?php echo $row["Foto"]; ?>" alt="" height="100" width="100" srcset=""></td>
+                <td>
+                    <a href="edit.php?id=<?php echo $row["id"];?>">Edit</a>
+                    <a href="hapus.php?id=<?php echo $row["id"]; ?>"onclick="return confirm('Apakah data ini akan dihapus?')">Hapus</a>
+                </td>
+            </tr>
+            <?php $i++ ?>
+            <?php endforeach;?>
+        </tbody>
+    </table>
         <div id="content_footer"></div>
         <div id="footer">
             <p><a href="index.php">Home</a> | <a href="about.html">About Klinik</a> | <a href="contact.html">Contact Us</a></p>
