@@ -1,7 +1,31 @@
+<?php
+    require 'functions.php';
+
+    if (isset($_POST['register'])) 
+    {
+        if (registrasi($_POST) > 0) 
+        {
+            echo "
+                <style>
+                    alert('User berhasil ditambahkan');
+                </style>
+                ";
+        } else 
+        {
+            echo mysqly_error($conn);
+        }
+        
+    }
+?>
 <html>
 <head>
     <title>Registrasi</title>
     <link rel="stylesheet" href="style/style.css">
+    <style>
+        label {
+            display:block;
+        }
+    </style>
 </head>
 <body>
     <div class="konten">
@@ -10,7 +34,7 @@
             <h2 class="judul"> Registrasi </h2>
         </div>
         <div class="artikel">
-            <form action="#" method="post">
+            <form action="" method="post">
                 <div class="grup">
                         <label for="username">Username</label>
                         <input type="text" name="username" placeholder="Username">
