@@ -40,6 +40,61 @@ function tambah($data)
     return mysqli_affected_rows($conn);
 }
 
+function upload()
+{
+    $nama_file  =$_FILES['Foto']['name'];
+    $ukuran_file=$_FILES['Foto']['size'];
+    $error      =$_FILES['Foto']['error'];
+    $tmpfile    =$_FILES['Foto']['tmp_name'];
+
+    if ($error===4) 
+    {
+        // pastikan pada inputan gambar tidak terdapat atribut required
+        echo "
+            <script>
+                alert('Tidak ada gambar yang diupload');
+            </script>
+        ";
+        return false;
+    }
+
+    $jenis_gambar=['jpg', 'jpeg', 'gif'];
+    $pecah_gambar=explode('.', $nama_file);
+    $pecah_gambar=strtolower(end($pecah_gambar));
+    if (!in_array($pecah_gambar, $jenis_gambar)) 
+    {
+        echo "
+            <script>
+                alert('Yang anda upload bukan file gambar');
+            </script>
+            ";
+            return false;
+    }
+
+
+    // cek kapasitas gambar dalam bute kalau 1000000 byte = 1 Megabyte
+    if ($ukuran_file > 1000000) 
+    {
+        echo "
+            <script>
+                alert('ukuran gambar terlalu besar');
+            </script>
+        ";
+        return false;
+    }
+
+    // generate id untuk penamaan gambar dengan function uniquid()
+    $namafilebaru=uniqid();
+    $namafilebaru .= '.';
+    $namafilebaru .= $pecah_gambar;
+    
+
+    move_uploaded_file($tmpfile, 'image/'.$namafilebaru);
+
+    // kita return nama file nya agar dapat masuk ke $gambar=$upload() pada function tambah
+    return $namafilebaru;
+}
+
 function registrasi($data)
 {
     global $conn;
@@ -72,7 +127,7 @@ function registrasi($data)
     }
 
     $password=password_hash($password, PASSWORD_DEFAULT);
-    var_dump($password);
+    // var_dump($password);
 
     mysqli_query($conn, "INSERT INTO user VALUES ('', '$username', '$password')");
 
