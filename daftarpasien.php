@@ -1,3 +1,8 @@
+<?php
+    require 'functions.php';
+    $pasien=query("SELECT * FROM pasien");
+
+?>
 <html>
 <head>
     <title>Daftar Pasien</title>
@@ -61,7 +66,7 @@
                 <th>Aksi </th>
             </tr>
             <?php $i=1 ?>
-            <?php foreach ($mahasiswa as $row):?>
+            <?php foreach ($pasien as $row):?>
         </thead>
         <tbody>
             <tr>
