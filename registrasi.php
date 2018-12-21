@@ -37,18 +37,18 @@
             <form action="" method="post">
                 <div class="grup">
                         <label for="username">Username</label>
-                        <input type="text" name="username" placeholder="Username">
+                        <input type="text" name="username" id="username" placeholder="Username">
                 </div>
                 <div class="grup">
                         <label for="password">Password</label>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" id="password" placeholder="Password">
                 </div>
                 <div class="grup">
                         <label for="password2">Konfirmasi Password</label>
-                        <input type="password" name="password2" placeholder="Konfirmasi Password">
+                        <input type="password" name="password2" id="password"placeholder="Konfirmasi Password">
                 </div>
                 <div class="grup">
-                        <input type="submit" value="Registrasi">
+                        <input type="submit" name="register" value="Registrasi">
                         <br>
                         <p class="message">Already Registered? <a href="login.php">Log In</a></p>
                 </div>
