@@ -4,7 +4,7 @@ $conn=mysqli_connect("localhost","root","","project");
 if (!$conn) {
     die('Koneksi Error: '.mysqli_connect_error().' - '.mysqli_connect_error());
 }
-$pasien=mysqli_query($conn,"SELECT * FROM pasien");
+$result=mysqli_query($conn,"SELECT * FROM pasien");
 
 
 function query($query_kedua){
@@ -50,7 +50,6 @@ function upload()
 
     if ($error===4) 
     {
-        // pastikan pada inputan gambar tidak terdapat atribut required
         echo "
             <script>
                 alert('Tidak ada gambar yang diupload');
@@ -58,7 +57,6 @@ function upload()
         ";
         return false;
     }
-
     $jenis_gambar=['jpg', 'jpeg', 'gif'];
     $pecah_gambar=explode('.', $nama_file);
     $pecah_gambar=strtolower(end($pecah_gambar));
@@ -72,8 +70,6 @@ function upload()
             return false;
     }
 
-
-    // cek kapasitas gambar dalam bute kalau 1000000 byte = 1 Megabyte
     if ($ukuran_file > 1000000) 
     {
         echo "
@@ -84,7 +80,6 @@ function upload()
         return false;
     }
 
-    // generate id untuk penamaan gambar dengan function uniquid()
     $namafilebaru=uniqid();
     $namafilebaru .= '.';
     $namafilebaru .= $pecah_gambar;
@@ -131,6 +126,112 @@ function registrasi($data)
     // var_dump($password);
 
     mysqli_query($conn, "INSERT INTO user VALUES ('', '$username', '$password')");
+
+    return mysqli_affected_rows($conn);
+}
+
+function registrasiadm($data)
+{
+    global $conn;
+
+    $username=strtolower(stripcslashes($data['username']));
+
+    $password=mysqli_real_escape_string($conn, $data['password']);
+    $password2=mysqli_real_escape_string($conn, $data['password2']);
+
+    $result=mysqli_query($conn, "SELECT username FROM admin WHERE username='$username'");
+
+    if (mysqli_fetch_assoc($result)) 
+    {
+        echo "
+            <script>
+                alert('username sudah ada');
+            </script>
+        ";
+        return false;
+    }
+
+    if ($password!==$password2) 
+    {
+        echo "
+            <script>
+                alert('password anda tidak sama');
+            </script>
+        ";
+        return false;
+    }
+
+    $password=password_hash($password, PASSWORD_DEFAULT);
+    // var_dump($password);
+
+    mysqli_query($conn, "INSERT INTO admin VALUES ('', '$username', '$password')");
+
+    return mysqli_affected_rows($conn);
+}
+
+function cari($keyword)
+{
+    $sql= "SELECT * FROM pasien
+            WHERE
+            Nama LIKE '%$keyword%' OR
+            NomorPasien LIKE '%$keyword%' OR
+            Alamat LIKE '%$keyword%' OR
+            Ruang LIKE '%$keyword%' OR
+            Derita LIKE '%$keyword%'
+            ";
+
+            return mysqli_query($sql);
+}
+
+function edit ($data){
+    global $conn;
+
+    $id=$data["id"];
+    $nama=htmlspecialchars($data["Nama"]);
+    $nopas=htmlspecialchars($data["NomorPasien"]);
+    $alamat=htmlspecialchars($data["Alamat"]);
+    $ruang=htmlspecialchars($data["Ruang"]);
+    $derita=htmlspecialchars($data["Derita"]);
+
+    
+
+    $query= " UPDATE pasien SET
+                Nama = '$nama',
+                NomorPasien = '$nopas',
+                Alamat = '$alamat',
+                Ruang = '$ruang',
+                Derita = '$derita'
+                WHERE id= $id ";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+    
+}
+
+function hapus ($id){
+    global $conn;
+    mysqli_query($conn,"DELETE FROM pasien WHERE id =$id ");
+    return mysqli_affected_rows($conn);
+}
+
+function hapusobat ($id){
+    global $conn;
+    mysqli_query($conn,"DELETE FROM obat WHERE id =$id ");
+    return mysqli_affected_rows($conn);
+}
+
+function tambahobat($data)
+{
+    global $conn;
+
+    $nomor=htmlspecialchars($data["nomor"]);
+    $nama=htmlspecialchars($data["nama"]);
+    $supplier=htmlspecialchars($data["supplier"]);
+
+    $query= "INSERT INTO obat
+                VALUES 
+                ('','$nomor','$nama','$supplier')";
+    mysqli_query($conn,$query);
 
     return mysqli_affected_rows($conn);
 }
