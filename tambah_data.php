@@ -32,8 +32,8 @@ if(isset($_POST['submit'])){
         <div class="form-group">
         <label for="Nama">Nama: </label>
         <input type="text" class="form-control" name="Nama" id="Nama" placeholder="Input field"required>
-        <label for="Nomor Pasien">Nomor Pasien :</label>
-        <input type="text" class="form-control" name="Nomor Pasien" id="Nomor Pasien" placeholder="Input field"required>
+        <label for="NomorPasien">Nomor Pasien :</label>
+        <input type="text" class="form-control" name="NomorPasien" id="NomorPasien" placeholder="Input field"required>
         <label for="Alamat">Alamat: </label>
         <input type="text" class="form-control" name="Alamat" id="Alamat" placeholder="Input field"required>
         <label for="Ruang">Ruang: </label>
