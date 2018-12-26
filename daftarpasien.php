@@ -1,7 +1,6 @@
 <?php
     require 'functions.php';
-    $pasien=query("SELECT * FROM pasien");
-
+    // $pasien=query("SELECT * FROM pasien");
 ?>
 <html>
 <head>
@@ -65,14 +64,15 @@
                 <th>Foto </th>
                 <th>Aksi </th>
             </tr>
-            <?php $i=1 ?>
-            <?php foreach ($pasien as $row):?>
+        <?php $i=1 ?>
+        <?php foreach ($pasien as $row):?>
         </thead>
         <tbody>
+        
             <tr>
                 <td><?= $i; ?></td>
                 <td><?= $row["Nama"]; ?></td>
-                <td><?= $row["Nomor Pasien"]; ?></td>
+                <td><?= $row["NomorPasien"]; ?></td>
                 <td><?= $row["Alamat"]; ?></td>
                 <td><?= $row["Ruang"]; ?></td>
                 <td><?= $row["Derita"]; ?></td>
