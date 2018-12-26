@@ -3,7 +3,7 @@
 
     if (isset($_POST['register'])) 
     {
-        if (registrasi($_POST) > 0) 
+        if (registrasiadm($_POST) > 0) 
         {
             echo "
                 <style>
@@ -50,6 +50,7 @@
                 <div class="grup">
                         <input type="submit" name="register" value="Registrasi">
                         <br>
+                        <p class="message">Registrasi Apoteker? <a href="registrasiadm.php">Registrasi Apoteker</a></p>
                         <p class="message">Already Registered? <a href="login.php">Log In</a></p>
                 </div>
             </form>
