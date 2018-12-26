@@ -4,7 +4,8 @@ $conn=mysqli_connect("localhost","root","","project");
 if (!$conn) {
     die('Koneksi Error: '.mysqli_connect_error().' - '.mysqli_connect_error());
 }
-$result=mysqli_query($conn,"SELECT * FROM pasien");
+$pasien=mysqli_query($conn,"SELECT * FROM pasien");
+
 
 function query($query_kedua){
     global $conn;
@@ -21,9 +22,9 @@ function tambah($data)
     global $conn;
 
     $nama=htmlspecialchars($data["Nama"]);
-    $nopas=htmlspecialchars($data["Nomor Pasien"]);
+    $nopas=htmlspecialchars($data["NomorPasien"]);
     $alamat=htmlspecialchars($data["Alamat"]);
-    $ruang=htmlspecialchars($data["Ruamg"]);
+    $ruang=htmlspecialchars($data["Ruang"]);
     $derita=htmlspecialchars($data["Derita"]);
 
     $foto=upload();
