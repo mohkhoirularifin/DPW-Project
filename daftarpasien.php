@@ -1,6 +1,18 @@
 <?php
+    session_start();
+    if (!isset($_SESSION["login"])) 
+    {
+        echo $_SESSION["login"];
+        header("Location:login.php");
+        exit;
+    }
+
     require 'functions.php';
-    // $pasien=query("SELECT * FROM pasien");
+    $pasien=mysqli_query($conn,"SELECT * FROM pasien");
+    if(isset($_POST["cari"]))
+    {
+    $pasien=cari($_POST["keyword"]);
+    }
 ?>
 <html>
 <head>
@@ -21,7 +33,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Link</a>
         </div>
     
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -30,11 +41,11 @@
                 <li class="active"><a href="index.php">Home</a></li>
                 <li><a href="daftarpasien.php">Daftar Pasien</a></li>
             </ul>
-            <form class="navbar-form navbar-right" role="search">
+            <form class="navbar-form navbar-right" action="" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Cari">
+                <input type="text" name="keyword" size="40" autofocus placeholder="Masukkan Keyword Pencarian" autocomplete="off">
                 </div>
-                <button type="submit" class="btn btn-default">Cari</button>
+                <button type="submit" name="cari"> Cari</button>
             </form>
             <ul class="nav navbar-right">
                 <li class="active"><a href="logout.php">Logout</a></li>
