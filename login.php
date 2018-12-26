@@ -1,20 +1,20 @@
 <?php
     session_start();
     require 'functions.php';
-    //check cookie
-    // if (isset($_COOKIE['login'])) 
-    // {
-    //     if ($_COOKIE['login']=='true') 
-    //     {
-    //         $_SESSION['login']=true;
-    //     }
-    // }
+    
+    if (isset($_COOKIE['login'])) 
+    {
+        if ($_COOKIE['login']=='true') 
+        {
+            $_SESSION['login']=true;
+        }
+    }
 
-    // if (isset($_SESSION["login"])) 
-    // {
-    //     header("Location:index.php");
-    //     exit;
-    // }
+    if (isset($_SESSION["login"])) 
+    {
+        header("Location:index.php");
+        exit;
+    }
     if (isset($_COOKIE['id'])&& isset($_COOKIE['username'])) 
     {
         $id=$_COOKIE['id'];
@@ -42,7 +42,7 @@
                     setcookie('id',$row['id'], time() +60);
                     setcookie('key',hash(sha256,$row['username']),time()+60);
                 }
-                header("Location:index.php");
+                header("Location:daftarpasien.php");
                 exit;
             }
         }
@@ -82,7 +82,9 @@
                 <div class="grup">
                     <input type="submit" name="login" value="Log In">
                     <br>
+                    <p class="message">Login Apoteker.. <a href="loginadm.php">Login Apoteker</a></p>
                     <p class="message">Not registered? <a href="registrasi.php">Create an account</a></p>
+
                 </div>
             </form>
         </div>
