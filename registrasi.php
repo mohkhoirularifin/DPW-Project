@@ -3,7 +3,7 @@
 
     if (isset($_POST['register'])) 
     {
-        if (registrasiadm($_POST) > 0) 
+        if (registrasi($_POST) > 0) 
         {
             echo "
                 <style>
