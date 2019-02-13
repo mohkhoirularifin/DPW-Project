@@ -8,8 +8,8 @@ if (!isset($_SESSION["login"]))
     exit;
 }
     require 'functions.php';
-    $nama = $_GET['Nama'];
-    $row = mysqli_query("SELECT * FROM pasien WHERE Nama='$nama'")[0];
+    $nama = $_GET['id'];
+    $row = mysqli_query("SELECT * FROM pasien WHERE id='$id'")[0];
     if(isset($_POST['submit']))
     {
         if(edit($_POST) > 0)
