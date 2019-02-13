@@ -1,9 +1,9 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION["login2"])) 
+    if (!isset($_SESSION["login"])) 
     {
-        echo $_SESSION["login2"];
+        echo $_SESSION["login"];
         header("Location:login.php");
         exit;
     }
