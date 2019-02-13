@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-// if (!isset($_SESSION["login"])) 
-// {
-//     echo $_SESSION["login"];
-//     header("Location:login.php");
-//     exit;
-// }
+if (!isset($_SESSION["login"])) 
+{
+    echo $_SESSION["login"];
+    header("Location:login.php");
+    exit;
+}
     require 'functions.php';
     $nama = $_GET['Nama'];
     $row = mysqli_query("SELECT * FROM obat WHERE Nama='$nama'")[0];
